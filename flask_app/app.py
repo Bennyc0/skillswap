@@ -83,6 +83,7 @@ def find():
 # ---------- Message ----------
 @app.route('/message')
 def message():
+    return render_template('message.html')
 
 
 # ---------- Profile ----------

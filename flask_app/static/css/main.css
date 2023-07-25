@@ -603,7 +603,16 @@ input, select, textarea {
 /* this edit is the homepage logo */
 	.homepage-logo{
 		border-radius: 50%;
+		animation-name: auto-flip;
+		animation-duration: 2.5s;
+		animation-iteration-count: infinite;
 	}
+
+	@keyframes auto-flip {
+		0% {transform: rotateY(180deg);}
+		50% {transform: rotateY(180deg);}
+	}
+
 	.icon {
 		text-decoration: none;
 		border-bottom: none;
@@ -925,11 +934,11 @@ input, select, textarea {
 			}
 
 				ul.icons li a:hover {
-					background-color: rgba(255, 255, 255, 0.075);
+					background-color: rgba(255, 255, 255, 0.2);
 				}
 
 				ul.icons li a:active {
-					background-color: rgba(255, 255, 255, 0.175);
+					background-color: rgba(255, 255, 255, 0.2);
 				}
 
 /* Table */
