@@ -37,6 +37,7 @@ ol, ul {
 	list-style: none;
 }
 
+
 blockquote, q {
 	quotes: none;
 }
@@ -599,7 +600,10 @@ input, select, textarea {
 		}
 
 /* Icon */
-
+/* this edit is the homepage logo */
+	.homepage-logo{
+		border-radius: 50%;
+	}
 	.icon {
 		text-decoration: none;
 		border-bottom: none;
