@@ -1,4 +1,5 @@
 import sqlite3
+from time import sleep
 
 database_link = "./static/data/database.db"
 
@@ -46,3 +47,16 @@ def verify_premium(email):
 
     connect.close()
     return is_premium
+
+
+# ---------- AI Matching ----------
+# (Not really AI matching)
+
+# Free Version
+def free_matching(skill):
+    sleep(180)
+
+    
+
+# Premium Version
+    sleep(15)
