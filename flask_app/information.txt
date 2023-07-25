@@ -1,1 +1,3 @@
-CREATE TABLE users (username CHAR, email CHAR, password CHAR);
+Schemas:
+    - CREATE TABLE users (username CHAR, email CHAR, password CHAR, is_premium CHAR);
+    - 
