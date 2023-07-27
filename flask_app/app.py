@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import requests
 import database_functions as dbf
 
+app = Flask(__name__)
+
 current_email = None
 current_user = None
 
@@ -52,7 +54,7 @@ def store_user():
     email = request.form['email']
     password = request.form['password']
 
-    if dbf.get_user_rowid(email) == "":
+    if dbf.verify_user(email) == "":
         dbf.signup_user(username, email, password)
 
         current_user = username
@@ -76,17 +78,61 @@ def logout():
 
 
 # ---------- Find ----------
-@app.route('/find')
+# Find
+@app.route('/find', methods=['GET', 'POST'])
 def find():
+    global current_user
+    global current_email
+
+    category = None
+
+    if request.method == 'POST':
+        category = request.form['category']
+
+    all_posts = dbf.get_posts(category)
+
+    return render_template('find.html', all_posts=all_posts)
+
+# Create Post
+@app.route('/create')
+def create():
+    return render_template('create.html')
+
+# Store Post
+@app.route('/store-post')
+def store_posts():
+    global current_user
+    global current_email
+
+    post_info = [
+        poster_email := current_email,
+        poster_name := current_user,
+        category := request.form['category'],
+        title := request.form['title'],
+        description := request.form['description'],
+        contact_info := request.form['contact_info']
+    ]
+
+    dbf.store_posts(post_info)
+
+    return redirect(url_for('find'))
+
+
+# ---------- AI Matching ----------
+# AI Matching
+# @app.route('/matching')
+# def matching():
 
 
 # ---------- Message ----------
+# Message
 @app.route('/message')
 def message():
     return render_template('message.html')
 
 
 # ---------- Profile ----------
+# Profile
 @app.route('/profile')
 def profile():
     global current_email
@@ -95,12 +141,16 @@ def profile():
 
     return render_template('profile.html', information=information)
 
+
 # ---------- About ----------
+# About
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 # ---------- Premium ----------
+# Premium
 @app.route('/premium')
 def premium():
     global current_email
@@ -109,3 +159,7 @@ def premium():
 
     return render_template('premium.html', is_premium=is_premium)
 
+
+# ---------- Web Port/Server ----------
+if __name__== '__main__':
+    app.run(debug=True, host='0.0.0.0', port='9000')

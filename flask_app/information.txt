@@ -1,3 +1,3 @@
 Schemas:
     - CREATE TABLE users (username CHAR, email CHAR, password CHAR, is_premium CHAR);
-    - 
+    - CREATE TABLE ss_posts(poster_email CHAR, poster_name CHAR, category CHAR, title CHAR, description CHAR, contact_info CHAR);
